@@ -1,26 +1,36 @@
-# Hotel Booking Data Cleaning
+# Hotel Booking Data Cleaning and Analysis
 
-This repository contains a data cleaning pipeline for the "Hotel Booking" dataset, implemented in Python using the `pandas` library.
+This repository contains a data cleaning pipeline and an Exploratory Data Analysis (EDA) for the "Hotel Booking" dataset, implemented in Python.
 
 ## Overview
-The goal of this project is to prepare raw hotel booking data for further analysis by handling missing values, standardizing column names, removing duplicates, and performing feature engineering.
+The goal of this project is to prepare raw hotel booking data for analysis by handling missing values and feature engineering, followed by a comprehensive visualization of booking trends and cancellation behaviors.
 
-## Key Cleaning Steps
+## Key Data Cleaning Steps
 The `DataCleaning-1.ipynb` notebook performs the following operations:
-* **Renaming Columns**: Improves readability (e.g., `adults` to `num_adults`).
+* **Renaming Columns**: Standardized naming for better readability (e.g., `adults` to `num_adults`).
 * **Handling Missing Values**: 
-    * Fills missing values in the `agent` column with -1.
-    * Fills missing values in the `country` column with 'Unknown'.
-    * Removes rows with missing `num_children` values.
+    * Imputed missing `agent` values with -1.
+    * Labeled missing `country` entries as 'Unknown'.
+    * Removed rows with missing `num_children` data.
 * **Data Transformation**: 
-    * Drops the `company` column.
-    * Updates data types for columns like `is_canceled` and `is_repeated_guest` to `boolean`.
+    * Dropped the `company` column due to high sparsity.
+    * Converted columns such as `is_canceled` and `is_repeated_guest` to `boolean` types.
 * **Feature Engineering**: 
-    * Creates a new column `lead_time_binned` by binning the `lead_time` variable into categorical ranges.
+    * Created `lead_time_binned` to group booking lead times into categorical ranges.
 * **Data Quality**: 
-    * Cleans string data in the `hotel` column.
-    * Identifies and removes duplicate records from the dataset.
+    * Cleaned string inconsistencies in the `hotel` column and removed all duplicate records.
+
+## Key Analytical Insights
+Following the cleaning process, an EDA was conducted to visualize core business metrics:
+* **Seasonal Booking Trends**: Monthly visualization of visitor volume identifies peak demand periods, allowing for better operational planning.
+* **Hotel Type Comparison**: A side-by-side comparison of "Resort Hotel" vs. "City Hotel" bookings reveals differences in market volume.
+* **Cancellation Analysis**: 
+    * Evaluated cancellation rates by hotel type to identify risk factors.
+    * Analyzed the impact of **Lead Time** on cancellations, revealing that longer lead times are strongly correlated with higher cancellation rates.
+    * Examined **Deposit Types**, finding that payment policies significantly influence the likelihood of a booking being canceled.
 
 ## Requirements
 * Python 3
-* `pandas` library
+* `pandas`
+* `matplotlib`
+* `seaborn`
